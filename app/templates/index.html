@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+  
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .login-form {
+            max-width: 300px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top:30px;
+        }
+
+        .error-message {
+            color: #ff0000;
+            margin-top: 10px;
+        }
+        .login-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    margin-top:40px;
+}
+
+.login-btn:hover {
+    background-color: #45a049;
+}
+
+form label {
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+form input {
+    border-radius: 20px; 
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.heading {
+    font-family: "Helvetica", sans-serif; 
+    text-align: center;
+}
+    </style>
+
+</head>
+<body>
+    <h1 class="heading">Welcome to Text sentiment analysis </h1>
+    <div class="container">
+    <h3 class="heading">Login</h3>
+    <div class="login-form">
+    <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <button class="login-btn" type="submit">Login</button>
+    </form>
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% endif %}
+    </div>
+</body>
+</html>
+

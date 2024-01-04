@@ -1,0 +1,85 @@
+<!-- templates/result.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+     <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+
+        
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+    
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+      
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+      
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+       
+        .btn {
+            border: 2px solid gray;
+            color: gray;
+            background-color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if 'username' in session %}
+            <h1>Welcome, {{ session['username'] }}!</h1>
+        {% endif %}
+        
+        <form action="{{ url_for('logout') }}" method="post">
+            <button class="btn" type="submit">Logout</button>
+        </form>
+      
+        <h1>Sentiment Analysis</h1>
+        <p><strong> User Sentence:</strong> {{ user_sentence }}</p>
+        <p><strong>Paraphased text:</strong> {{ paraphrased_sentence }}</p>
+        <br>
+        <a href="{{ url_for('predict_sentiment') }}">Go back to Prediction</a>
+        <br>
+    </div>
+</body>
+</html>
+

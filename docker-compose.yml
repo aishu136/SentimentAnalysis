@@ -1,0 +1,44 @@
+version: "3.2"
+
+services:
+   db:
+    build:
+      context: ./mysql-init
+    restart: always
+    container_name: "mysqldb"
+    environment:
+         MYSQL_DATABASE: "sentiment_logs"
+         MYSQL_ROOT_PASSWORD: "root"
+    ports:
+       - "3307:3306"
+    volumes:
+       - ./mysql-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+       - ./data:/var/lib/mysql
+    networks:
+      - textclass
+       
+   model:
+    build:
+      context: ./model
+    container_name: "modelcontainer"
+    networks:
+      - textclass
+   app:
+    build: .
+    command: sh -c "sleep 10s ; python app.py"
+    container_name: "flask-app"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+      - model
+    networks:
+     - textclass
+networks:
+  textclass:
+    driver: "bridge"
+
+ 
+  
+
+ 
