@@ -55,8 +55,8 @@ class PositiveParaphraser:
     def paraphrase_positive(self, text):
         cleaned_text = self.clean_text(text)
         input_ids = self.tokenizer.encode(cleaned_text, return_tensors="pt")
-        paraphrased_ids = self.model.generate(input_ids, max_length=1000, num_beams=5, temperature=0.8,top_k=50)
-        paraphrased_text = self.tokenizer.decode(paraphrased_ids[0], skip_special_tokens=True,do_sample=True)
+        paraphrased_ids = self.model.generate(input_ids, max_length=1000, num_beams=5, temperature=0.8,top_k=50,top_p=0.95,do_sample=True,no_repeat_ngram_size=2,length_penalty=0.5,early_stopping=True)
+        paraphrased_text = self.tokenizer.decode(paraphrased_ids[0], skip_special_tokens=True)
         return paraphrased_text
 
     def save_model(self, model_path="positive_paraphraser"):
